@@ -1,0 +1,207 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>AirBolt</title>
+    <link
+      href="http://fonts.googleapis.com/css?family=Ubuntu&subset=cyrillic,latin"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      * { font-family: Ubuntu !important; } img { max-width: 100%; } body {
+      -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none;
+      width: 100% !important; height: 100%; line-height: 1.6; } body { width:
+      100% !important; -webkit-text-size-adjust: 100% !important;
+      -ms-text-size-adjust: 100% !important; margin: 0 !important; padding: 0
+      !important; font-family: Ubuntu, "Helvetica Neue", Helvetica, sans-serif
+      !important; font-size: 12px !important; color: #000000 !important; } table
+      td { vertical-align: top; } body { background-color: #ffffff; } .body-wrap
+      { background-color: #ffffff; width: 100%; } .container { display: block
+      !important; margin: 0 auto !important; clear: both !important; } .content
+      { margin: 0 auto; display: block; padding: 20px; } .main { background:
+      #fff; border: 1px solid #e9e9e9; border-radius: 3px; } .content-wrap {
+      /*padding: 20px;*/ } .content-block { padding: 0 0 0 0px; } .header {
+      width: 100%; margin-bottom: 20px; } .footer { width: 100%; clear: both;
+      color: #1EB5A3; background: #1EB5A3; padding-top: 20px; } .footer a {
+      color: #999; } .footer p, .footer a, .footer unsubscribe, .footer td {
+      font-size: 24px; color: #ffffff; } .column-left { float: left; width: 50%;
+      } .column-right { float: left; width: 50%; } h1, h2, h3 { font-family:
+      Ubuntu, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      color: #000; margin: 40px 0 0; line-height: 1.2; font-weight: 400; } h1 {
+      font-size: 32px; font-weight: 500; } h2 { font-size: 24px; } h3 {
+      font-size: 18px; } h4 { font-size: 14px; font-weight: 600; } p, ul, ol {
+      margin-bottom: 10px; font-weight: normal; } p li, ul li, ol li {
+      margin-left: 5px; list-style-position: inside; } a { color: #348eda;
+      text-decoration: underline; } .btn-primary { text-decoration: none; color:
+      #FFF; background-color: #348eda; border: solid #348eda; border-width: 10px
+      20px; line-height: 2; font-weight: bold; text-align: center; cursor:
+      pointer; display: inline-block; border-radius: 5px; text-transform:
+      capitalize; } .last { margin-bottom: 0; } .first { margin-top: 0; }
+      .padding { padding: 10px 0; } .aligncenter { text-align: center; }
+      .alignright { text-align: right; } .alignleft { text-align: left; } .clear
+      { clear: both; } .alert { font-size: 16px; color: #fff; font-weight: 500;
+      padding: 20px; text-align: center; border-radius: 3px 3px 0 0; } .alert a
+      { color: #fff; text-decoration: none; font-weight: 500; font-size: 16px; }
+      .alert.alert-warning { background: #ff9f00; } .alert.alert-bad {
+      background: #d0021b; } .alert.alert-good { background: #68b90f; } .invoice
+      { margin: 40px auto; text-align: left; width: 80%; } .invoice td {
+      padding: 5px 0; } .invoice .invoice-items { width: 100%; } .invoice
+      .invoice-items td { border-top: #eee 1px solid; } .invoice .invoice-items
+      .total td { border-top: 2px solid #333; border-bottom: 2px solid #333;
+      font-weight: 700; } p.user { color: #000000; margin: 0 250px 0; width:
+      50%; font-size: 24px; padding-top: 2cm; text-align: center; } p.user_title
+      { color: #1EB5A3; margin: 0 250px 0; width: 50%; font-size: 24px;
+      padding-top: 0.5cm; text-align: center; } p.padding { padding-top: 0.5cm;
+      } p.green { color: #1EB5A3; margin: 0 250px 0; width: 50%; padding-top:
+      0.5cm; text-align: center; } p.grey { color: #999999; margin: 0 250px 0;
+      text-align: center; width: 50%; }
+    </style>
+  </head>
+  <body>
+    <table class="body-wrap">
+      <tr>
+        <td></td>
+        <td class="container" width="600">
+          <div class="content">
+            <table class="main" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="content-wrap">
+                  <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="content-block" style="text-align:center;">
+                        <img
+                          src="{{backendUrl}}/public/images/logo.png"
+                          width="300px"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class="content-block"
+                        background="{{backendUrl}}/public/images/bg_image.png"
+                        style="border:0; height: 600px; width: 600px;"
+                      >
+                        <!-- begin content -->
+                        <div>
+
+                          <p class="user">Dear {{user.name}}</p>
+                          <p class="user_title">Welcome to the AirBolt!</p>
+                          <p class="padding green">Thanks for registering via
+                            our app!</p>
+                          <p class="padding grey">You'll be on cloud nine, once
+                            you have your hot little AirBolt ready to rock, lock
+                            and travel!</p>
+                          <p class="grey" style="padding-top: 0.5cm; ">Thank you
+                            again...</p>
+                          <p class="grey">With Love,</p>
+                          <p class="grey">The AirBolt Crew</p>
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="content-block">
+                        <p
+                          style="margin:0 30px 33px;; text-align:center; text-transform:uppercase; font-size:24px; line-height:30px; font-weight:bold; color:#484a42;"
+                        >
+                          WHAT TO DO NEXT...
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="content-block">
+                        <a style="display:block; margin:0 0 14px;" href="#"><img
+                            src="{{backendUrl}}/public/images/what_to_do_next.png"
+                            alt="More"
+                            style="display:block; margin:0; border:0; background:#eeeeee;"
+                          /></a>
+                        <div
+                          class="well text-center"
+                          style="padding-left: 30px;"
+                        >
+                          <a href="#">
+                            <img
+                              src="{{backendUrl}}/public/images/badge_new_google_play.png"
+                            />
+                          </a>
+                          <a href="#">
+                            <img
+                              src="{{backendUrl}}/public/images/apple_itunes.png"
+                            />
+                          </a>
+                        </div>
+                        <p
+                          style="font-size:14px; line-height:22px; color:#333333; margin:10px 20px 5px;"
+                        >Need additional assistance? Please visit our
+                          <a href="http://www.theairbolt.com/support">Help
+                            Centre</a>
+                          or contact our
+                          <a href="mailto:support@theairbolt.com">Customer
+                            Support team...</a>
+                          if they can't help, no one can!</p>
+                        <br />
+                        <p
+                          style="margin:10px 20px 35px; font-size:12px; line-height:18px; color:#333333;"
+                        >Have a great day!</p>
+                        <div class="well">
+                          <p
+                            style="margin:10px 20px 35px; font-size:12px; color:#333333; display: inline;"
+                          >The AirBolt Crew</p>
+                          <img
+                            src="{{backendUrl}}/public/images/logo.png"
+                            width="200px"
+                            style="display: inline; float: right;"
+                          />
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="footer">
+                    <table
+                      class="footer"
+                      width="100%"
+                      cellpadding="0"
+                      cellspacing="0"
+                    >
+                      <tr>
+                        <td class="content-wrap aligncenter">
+                          <div class="text-center content-block">
+                            <p>You're totally cool, you've joined the trend!</p>
+                            <br />
+                            <a href="https://www.facebook.com/theairbolt"><img
+                                src="{{backendUrl}}/public/images/facebook_white.png"
+                              /></a>
+                            <a href="https://twitter.com/theairbolt"><img
+                                src="{{backendUrl}}/public/images/twitter_white.png"
+                              /></a>
+                            <a href="https://www.instagram.com/theairbolt/"><img
+                                src="http://52.11.73.7:8000/public/images/instagram_white.png"
+                              /></a>
+                            <a href="mailto:hello@theairbolt.com"><img
+                                src="{{backendUrl}}/public/images/email_white.png"
+                              /></a>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+        <td></td>
+      </tr>
+    </table>
+  </body>
+
+</html>

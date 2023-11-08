@@ -69,17 +69,18 @@ app.post("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-     console.log("user", user);
     if (!user)
       return res.status(400).json({
         success: false,
         message: "User not exist",
       });
-    if (!user?.confirmAdd)
-      return res.status(400).json({
-        success: false,
-        message: "Your account has not been verified by the admin yet. Please wait for a short period or contact the admin for assistance.",
-      });
+      if(user?.role == "user"){
+        if (!user?.confirmAdd)
+        return res.status(400).json({
+          success: false,
+          message: "Your account has not been verified by the admin yet. Please wait for a short period or contact the admin for assistance.",
+        });
+      }
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch)
       return res
@@ -96,6 +97,7 @@ app.post("/auth/login", async (req, res) => {
         phone_no: user?.phone_no,
         token,
         image: user?.image,
+        role: user?.role
       },
       success: true,
       message: "Logged in successfully",

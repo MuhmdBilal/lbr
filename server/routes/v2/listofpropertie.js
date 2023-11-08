@@ -37,7 +37,7 @@ app.post("/add_property",checkAminAuthMiddleware, async (req, res) => {
     try {
         req.body?.propertyFields.forEach(async (element) => {
             let data = {
-                image: `${config.serverUrl}/public/images/${element?.property_image}`,
+                image: "https://cdn.britannica.com/08/187508-050-D6FB5173/Shanghai-Tower-Gensler-San-Francisco-world-Oriental-2015.jpg",
                 title: element?.property_title,
                 price: element?.property_price,
                 address: element?.property_location,

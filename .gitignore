@@ -6,7 +6,6 @@
 # Node artifact files
 node_modules/
 dist/
-/.env
 package-lock.json/
 questionnaire.pdf/
 # Compiled Java class files

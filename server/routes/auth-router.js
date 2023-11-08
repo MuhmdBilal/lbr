@@ -69,6 +69,7 @@ app.post("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+     console.log("user", user);
     if (!user)
       return res.status(400).json({
         success: false,

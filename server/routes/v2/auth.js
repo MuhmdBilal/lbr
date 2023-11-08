@@ -49,7 +49,7 @@ app.get("/users",checkAminAuthMiddleware, async (req, res) => {
     try {
       const users = await User.find({ role: "user" })
       .sort({ createdAt: -1 })
-      .select("_id name email createdAt");
+      .select("_id name email createdAt image");
       res.status(200).json({
         data: users,
         success: true,

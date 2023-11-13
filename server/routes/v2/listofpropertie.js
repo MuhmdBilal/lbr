@@ -20,9 +20,13 @@ const config = require("../../configs");
 // const upload = multer({ storage: storage }).single("image");
 app.post("/upload-image", checkAminAuthMiddleware, async (req, res) => {
   try{
-    return res.status(200).json({success: true, data: "https://www.worldatlas.com/r/w1200/upload/1e/65/5f/shutterstock-179315195.jpg"})
+    return res.status(200).json({success: true, data: {
+      image: "https://www.worldatlas.com/r/w1200/upload/1e/65/5f/shutterstock-179315195.jpg"
+    },
+    code: "upload_image"
+  })
   }catch (err) {
-    res.status(500).json({ success: false, error: "Internal Server Error " });
+    res.status(500).json({ success: false, error: err });
   }
   // upload(req, res, function (err) {
   //   if (err instanceof multer.MulterError) {

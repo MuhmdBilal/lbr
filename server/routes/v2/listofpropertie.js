@@ -43,7 +43,8 @@ app.post("/add_property", checkAminAuthMiddleware, async (req, res) => {
   try {
     req.body?.propertyFields.forEach(async (element) => {
       let data = {
-        image: `${config.serverUrl}/public/images/${element?.property_image}`,
+        // image: `${config.serverUrl}/public/images/${element?.property_image}`,
+        image: element?.property_image,
         title: element?.property_title,
         price: element?.property_price,
         address: element?.property_location,

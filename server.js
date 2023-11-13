@@ -6,18 +6,20 @@ const authRouter = require("./server/routes/auth-router");
 const questionnaireRouter = require("./server/routes/questionnaire-router");
 const userRouter = require("./server/routes/user-router");
 const listofproperties = require("./server/routes/listofproperties");
-const authv2 = require("./server/routes/v2/auth.js")
-const questionnaire = require("./server/routes/v2/questionnaire.js")
-const listofpropertie = require("./server/routes/v2/listofpropertie.js")
+const authv2 = require("./server/routes/v2/auth.js");
+const questionnaire = require("./server/routes/v2/questionnaire.js");
+const listofpropertie = require("./server/routes/v2/listofpropertie.js");
+const agendaListOfProperties = require("./server/routes/v2/agendaListofproperties.js");
+const feedbackList = require("./server/routes/v2/feedback.js");
+
 const fs = require("fs");
 const config = require("./server/configs/index.js");
 const db = require("./server/db.js");
-const path = require('path');
+const path = require("path");
 const app = express();
-const {staticFileMiddleware} = require("./server/middlewares")
+const { staticFileMiddleware } = require("./server/middlewares");
 const promiseApp = async () => {
   return new Promise((resolve, reject) => {
-    
     app.use(express.json());
     app.use(express.text());
     app.use(express.urlencoded({ extended: true }));
@@ -27,13 +29,15 @@ const promiseApp = async () => {
     app.use("/api", questionnaireRouter);
     app.use("/api", userRouter);
     app.use("/api", listofproperties);
-    // v2
+    // version 2
     app.use("/api/v2", authv2);
-    app.use("/api/v2",questionnaire)
-    app.use("/api/v2",listofpropertie)
-    app.use("/public", staticFileMiddleware)
-    app.use('/image', express.static(path.join(__dirname, '/image')));
-    app.use(express.static('public'))
+    app.use("/api/v2", questionnaire);
+    app.use("/api/v2", listofpropertie);
+    app.use("/api/v2", agendaListOfProperties);
+    app.use("/api/v2", feedbackList);
+    app.use("/public", staticFileMiddleware);
+    app.use("/image", express.static(path.join(__dirname, "/image")));
+    app.use(express.static("public"));
     // app.use(express.static("./client/build"));
     // app.get("/", (req, res) => {
     //   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
@@ -63,7 +67,6 @@ const promiseRun = (server) => {
 //     res.status(401).json({ message: 'Unauthorized: Token is invalid or expired' });
 //   }
 // });
-
 
 async function initialize() {
   await db.initialize();

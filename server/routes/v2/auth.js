@@ -10,7 +10,6 @@ app.post("/auth/login", async (req, res) => {
     try {
       const { email, password } = req.body;
       const user = await User.findOne({ email });
-       console.log("user", user);
       if (!user)
         return res.status(400).json({
           success: false,
@@ -43,9 +42,8 @@ app.post("/auth/login", async (req, res) => {
     }
   });
 
-// get api 
 //  get all user
-app.get("/users",checkAminAuthMiddleware, async (req, res) => {
+app.get("/users", checkAminAuthMiddleware, async (req, res) => {
     try {
       const users = await User.find({ role: "user" })
       .sort({ createdAt: -1 })

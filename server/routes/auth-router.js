@@ -69,19 +69,16 @@ app.post("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-     console.log("user", user);
     if (!user)
       return res.status(400).json({
         success: false,
         message: "User not exist",
       });
-      if(user?.role == "user"){
-        if (!user?.confirmAdd)
+        if (user?.role == "user" && !user?.confirmAdd)
         return res.status(400).json({
           success: false,
           message: "Your account has not been verified by the admin yet. Please wait for a short period or contact the admin for assistance.",
         });
-      }
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch)
       return res
@@ -135,8 +132,7 @@ app.post("/admin/login", async (req, res) => {
   }
 });
 
-// Update Api
-// Change password user side
+//Update Api Change password user side
 app.put("/change-password", checkAuthMiddleware, async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
@@ -165,9 +161,8 @@ app.put("/change-password", checkAuthMiddleware, async (req, res) => {
   }
 });
 
-// Get API
-// user get by Id admin side
-app.get("/user/:id",checkAminAuthMiddleware, async (req, res) => {
+//Get API user get by Id admin side
+app.get("/user/:id", checkAminAuthMiddleware, async (req, res) => {
   try {
     let user = await User.findOne({ _id: req?.params?.id }).select("_id name");
     res
@@ -178,7 +173,6 @@ app.get("/user/:id",checkAminAuthMiddleware, async (req, res) => {
   }
 });
 
-// update Api
 // Update Profile by user side
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -190,7 +184,6 @@ const storage = multer.diskStorage({
     cb(null, image);
   },
 });
-
 const upload = multer({ storage: storage }).single("image");
 app.put("/profile-Update", checkAuthMiddleware, upload, async (req, res) => {
   try {

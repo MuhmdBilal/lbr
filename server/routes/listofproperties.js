@@ -30,7 +30,6 @@ Handlebars.registerHelper('truncateText', function (text, length) {
     return text;
 });
 
-
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "./public/images/");
@@ -42,7 +41,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage }).single("image");
-app.post("/upload",checkAminAuthMiddleware, async (req, res) => {
+app.post("/upload", checkAminAuthMiddleware, async (req, res) => {
     upload(req, res, function (err) {
         if (err instanceof multer.MulterError) {
             return res.status(500).json(err);
@@ -53,12 +52,10 @@ app.post("/upload",checkAminAuthMiddleware, async (req, res) => {
     });
 })
 
-app.post("/add_properties",checkAminAuthMiddleware, async (req, res) => {
+app.post("/add_properties", checkAminAuthMiddleware, async (req, res) => {
     try {
-
         const user = await Users.findById(req.body.user_id)
         const userEmail = user?.email
-
         req.body?.propertyFields.forEach(async (element) => {
             let data = {
                 image: `${config.serverUrl}/public/images/${element?.property_image}`,
@@ -85,7 +82,6 @@ app.post("/add_properties",checkAminAuthMiddleware, async (req, res) => {
 
 })
 
-//Get Api
 // Get list of properties by questionnaire Id
 app.get('/getListOfProperties', checkAuthMiddleware, async (req, res) => {
     try {
@@ -117,9 +113,8 @@ app.get('/getListOfProperties', checkAuthMiddleware, async (req, res) => {
     }
 });
 
-// Admin Get APi
-// get list of properties by questionnaire Id
-app.get("/listOfPropertiesByQuestionnaire/:id",checkAminAuthMiddleware, async(req,res) => {
+//Admin get list of properties by questionnaire Id
+app.get("/listOfPropertiesByQuestionnaire/:id", checkAminAuthMiddleware, async(req,res) => {
     try{
           let listofproperties = await ListOfPropertiesSchema.find({ questionnaireId: req?.params?.id })
           .sort({ createdAt: -1})
@@ -130,9 +125,8 @@ app.get("/listOfPropertiesByQuestionnaire/:id",checkAminAuthMiddleware, async(re
     }
 })
 
-//Admin Get API
-//Get list of All properties 
-app.get('/getListOfAllProperties',checkAminAuthMiddleware, async (req, res) => {
+//Admin Get list of All properties 
+app.get('/getListOfAllProperties', checkAminAuthMiddleware, async (req, res) => {
     try {
         const data = await ListOfPropertiesSchema.find().sort({ createdAt: -1 });
         const arraOfData = data.map((element) => ({
@@ -160,9 +154,8 @@ app.get('/getListOfAllProperties',checkAminAuthMiddleware, async (req, res) => {
     }
 });
 
-// Post APi
 // update agenda Data
-app.put('/agenda/:id',checkAminAuthMiddleware, async (req, res) => {
+app.put('/agenda/:id', checkAminAuthMiddleware, async (req, res) => {
     try {
         await ListOfPropertiesSchema.findByIdAndUpdate(
             req.params.id,
@@ -175,8 +168,6 @@ app.put('/agenda/:id',checkAminAuthMiddleware, async (req, res) => {
     }
 })
 
-
-// Get Api
 // Get Adgenda List
 app.get('/get_agenda', checkAuthMiddleware, async (req, res) => {
     try {
@@ -208,8 +199,7 @@ app.get('/get_agenda', checkAuthMiddleware, async (req, res) => {
     }
 });
 
-//  Post APi 
-//  Accept list of properties
+// Post APi  Accept list of properties
 app.post('/accept_list_of_porperties', checkAuthMiddleware, async (req, res) => {
     try {
         let listOfArray = []
@@ -274,9 +264,7 @@ app.post('/accept_list_of_porperties', checkAuthMiddleware, async (req, res) => 
     }
 })
 
-
-//  Post APi 
-//  reject list of properties
+//Post APi reject list of properties
 app.post('/reject_list_of_porperties', checkAuthMiddleware, async (req, res) => {
     try {
         let listOfArray = []
@@ -344,8 +332,7 @@ app.post('/reject_list_of_porperties', checkAuthMiddleware, async (req, res) => 
     }
 })
 
-//Post Api
-// Request for more properties
+//Post Request for more properties
 app.post('/request_more_properties', checkAuthMiddleware, async (req, res) => {
     try {
         const questionnaire = await Questionnaire.findById(req?.body?.QuestionnaireId);

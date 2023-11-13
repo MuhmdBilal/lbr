@@ -9,8 +9,7 @@ const sendEmail = require("../nodemailer");
 const filePath = path.join(__dirname, "../../public/KYC.pdf");
 const mongoose = require('mongoose');
 
-// Post Api
-// add Questionnaire mobile side/user side
+// Post Api add Questionnaire mobile side/user side
 app.post('/questionnaire', checkAuthMiddleware, async (req, res) => {
   try {
     const userData = await Users.findById(req.userId);
@@ -35,7 +34,13 @@ app.post('/questionnaire', checkAuthMiddleware, async (req, res) => {
       `,
       attachments: [{ filename: 'KYC.pdf', path: filePath }]
     };
-
+    await sendEmail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error, 'error');
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
     const newQuestionnaire = new Questionnaire(questionnaireData);
     await newQuestionnaire.save();
 
@@ -57,9 +62,8 @@ app.post('/questionnaire', checkAuthMiddleware, async (req, res) => {
     }
   }
 });
-
-// Get Api 
-// Gett All Questionnaire by mobile side
+ 
+// Get All Questionnaire by mobile side
 app.get('/questionnaire', checkAuthMiddleware, async (req, res) => {
   try {
     const data = await Questionnaire.find({ userId: req.userId })
@@ -83,12 +87,10 @@ app.get('/questionnaire', checkAuthMiddleware, async (req, res) => {
   }
 });
 
-// Get APi
 // Get All Questionnaire by Admin Side
-app.get('/getAllQuestionnaire',checkAminAuthMiddleware, async (req, res) => {
+app.get('/getAllQuestionnaire', checkAminAuthMiddleware, async (req, res) => {
   try {
     const result = await Questionnaire.find().sort({ createdAt: -1 }).select('look_and_see.trip_date look_and_see.accommodated look_and_see.accompany look_and_see.address expatriation.moving_city _id userId userEmail');
-
     if (result.length > 0) {
       res.status(200).json({
         success: true,
@@ -109,9 +111,8 @@ app.get('/getAllQuestionnaire',checkAminAuthMiddleware, async (req, res) => {
   }
 });
 
-// Get Api
 // Get user and KYC Questionnaire length information by dashboard
- app.get("/dashboard-details",checkAminAuthMiddleware, async (req, res)=>{
+ app.get("/dashboard-details", checkAminAuthMiddleware, async (req, res)=>{
   try{
     let totalNumberOfUser = await Users.countDocuments({ role: "user" })
     let totalNumberOfQuestionnaire = await Questionnaire.countDocuments()
@@ -119,7 +120,6 @@ app.get('/getAllQuestionnaire',checkAminAuthMiddleware, async (req, res) => {
       totalNumberOfUser: totalNumberOfUser,
       totalNumberOfQuestionnaire: totalNumberOfQuestionnaire
     }
-  
    return res.status(200).json({ success: true, data: dashboardDetails, message: "Dashboard Details" });
   }catch (err){
     return res.status(500).json({ success: false, error: 'Internal Server Error' });

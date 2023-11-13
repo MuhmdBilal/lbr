@@ -21,6 +21,8 @@ app.get("/getAgendaList", checkAminAuthMiddleware, async (req, res) => {
       date: element?.date,
       pickuploaction: element?.pickuploaction,
       userEmail: element?.userEmail,
+      image: element?.image,
+      price: element?.price
     }));
 
     res.status(200).json({

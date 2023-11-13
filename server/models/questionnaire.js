@@ -63,7 +63,8 @@ const questionnaireSchema = new mongoose.Schema(
     },
     additional_information: { type: String },
     userId: { type: String },
-    userEmail: { type: String }
+    userEmail: { type: String },
+    pdf_URL: { type: String, default: '' },
   },
   { timestamps: true }
 );

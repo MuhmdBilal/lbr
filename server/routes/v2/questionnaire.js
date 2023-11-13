@@ -16,9 +16,9 @@ app.get('/getQuestionnaireByUserId', checkAminAuthMiddleware, async (req, res) =
       for (const questionnaire of questionnaires) {
           const properties = await ListOfPropertiesSchema.find({ questionnaireId: questionnaire._id.toString() }).select("_id title price address destination link image");
           const questionnaireData = {
-              questionnaire,
-              properties
-          };
+            ...questionnaire.toObject(), 
+            properties
+        };
           result.push(questionnaireData);
       }
       res.status(200).json({

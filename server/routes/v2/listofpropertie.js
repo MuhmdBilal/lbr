@@ -69,27 +69,4 @@ app.post("/add_property", checkAminAuthMiddleware, async (req, res) => {
   }
 });
 
-//get api list of property by questionnaire id
-app.get(
-  "/listOfPropertiesByQuestionnaireId",
-  checkAminAuthMiddleware,
-  async (req, res) => {
-    try {
-      const questionnaireId = req.query.questionnaireId_id;
-      let listofproperties = await ListOfPropertiesSchema.find({
-        questionnaireId: questionnaireId,
-      })
-        .sort({ createdAt: -1 })
-        .select("_id title price address destination link image");
-      res.status(200).json({
-        success: true,
-        data: listofproperties,
-        message: "List Of Properties By Questionnaire.",
-      });
-    } catch (error) {
-      res.status(500).json({ success: false, message: error.message });
-    }
-  }
-);
-
 module.exports = app;

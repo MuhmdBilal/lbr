@@ -7,7 +7,8 @@ async function generatePDF(data) {
     try {
       const doc = new PDFDocument();
       const filePath = './public/KYC.pdf';
-      doc.pipe(fs.createWriteStream(filePath));
+      const writeStream = fs.createWriteStream(filePath);
+      doc.pipe(writeStream);
       const fontSize = 12;
       doc.fontSize(fontSize);
       doc.font("Helvetica-Bold");
@@ -566,10 +567,13 @@ async function generatePDF(data) {
 
         startY += adjustedCellHeight;
       });
-
-      // Finalize the PDF
+      writeStream.on('finish', () => {
+        resolve(filePath);
+      });
+      writeStream.on('error', (error) => {
+        reject(error);
+      });
       doc.end();
-      resolve(filePath);
     } catch (error) {
       reject(error);
     }

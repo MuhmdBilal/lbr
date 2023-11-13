@@ -8,9 +8,14 @@ const generatePDF = require("./generatePDF");
 const sendEmail = require("../nodemailer");
 const filePath = path.join(__dirname, "../../public/KYC.pdf");
 const mongoose = require('mongoose');
+const multer = require("multer");
+const fs = require('fs');
+const config = require("../configs");
 
-// Post Api add Questionnaire mobile side/user side
-app.post('/questionnaire', checkAuthMiddleware, async (req, res) => {
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+app.post('/questionnaire', checkAuthMiddleware, upload.single('file'), async (req, res) => {
   try {
     const userData = await Users.findById(req.userId);
     const userEmail = userData.email;
@@ -18,12 +23,17 @@ app.post('/questionnaire', checkAuthMiddleware, async (req, res) => {
     const fromMail = userData.email;
     const adminUsers = await Users.find({ role: 'admin' });
     const toMail = adminUsers.map(admin => admin.email);
+    const filePath = await generatePDF(req.body);
+    const fileName =`KYC_${Date.now()}.pdf`;
+    const pdfFilePath = path.join("./public/pdf/", fileName);
+   fs.copyFileSync(filePath, pdfFilePath);
+
     const questionnaireData = {
       ...req.body,
       userId: req.userId,
-      userEmail: userEmail
+      userEmail: userEmail,
+      pdf_URL: `${config.serverUrl}/public/pdf/${fileName}`
     };
-    const filePath = await generatePDF(req.body);
     const mailOptions = {
       from: fromMail,
       to: [...toMail, 'lbr@yopmail.com', 'sean.carpenter@london-brazil.com', 'renato@london-brazil.com', "bilalsattar55544@gmail.com", "zeshanbutt9128@gmail.com"],

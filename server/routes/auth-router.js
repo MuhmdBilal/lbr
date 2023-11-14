@@ -9,7 +9,7 @@ const { checkAuthMiddleware, checkAminAuthMiddleware } = require("../middlewares
 const multer = require("multer");
 const path = require("path");
 const mongoose = require("mongoose");
-
+const Setting = require("../models/setting")
 app.post("/auth/register", async (req, res) => {
   try {
     const { name, phone_no, email, password } = req.body;
@@ -42,6 +42,8 @@ app.post("/auth/register", async (req, res) => {
     });
 
     const user = await newUser.save();
+    let UserIds = new Setting({userId: user._id})
+    await UserIds.save()
     const token = jwt.sign({ userId: user._id }, config.jwtSecret, {
       expiresIn: config.expiresIn,
     });

@@ -11,7 +11,7 @@ const questionnaire = require("./server/routes/v2/questionnaire.js");
 const listofpropertie = require("./server/routes/v2/listofpropertie.js");
 const agendaListOfProperties = require("./server/routes/v2/agendaListofproperties.js");
 const feedbackList = require("./server/routes/v2/feedback.js");
-
+const Setting = require("./server/routes/v2/setting.js")
 const fs = require("fs");
 const config = require("./server/configs/index.js");
 const db = require("./server/db.js");
@@ -35,6 +35,7 @@ const promiseApp = async () => {
     app.use("/api/v2", listofpropertie);
     app.use("/api/v2", agendaListOfProperties);
     app.use("/api/v2", feedbackList);
+    app.use("/api/v2", Setting)
     app.use("/public", staticFileMiddleware);
     app.use("/image", express.static(path.join(__dirname, "/image")));
     app.use(express.static("public"));

@@ -72,7 +72,6 @@ app.post("/add_properties", checkAminAuthMiddleware, async (req, res) => {
         })
         res.status(200).json({
             success: true,
-
             message: "Property added successfully.",
             code: "Properties_API",
         })

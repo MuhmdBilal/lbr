@@ -6,7 +6,7 @@ const settingSchema = new mongoose.Schema({
     camera: {type: Boolean, default: true},
     gallary: {type: Boolean, default: true},
     location: {type: Boolean, default: true},
-    userId: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
+    user_id: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
 },
   { timestamps: true })
 

@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const config = require("./configs");
 const express = require("express");
 const path = require("path");
-const Users = require("./models/users")
+const Users = require("./models/users");
 exports.checkAuthMiddleware = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
@@ -24,9 +24,7 @@ exports.checkAuthMiddleware = async (req, res, next) => {
     const user = await Users.findById(decoded.userId);
 
     if (!user) {
-      return res
-        .status(401)
-        .json({ success: false, message: "Invalid Token" });
+      return res.status(401).json({ success: false, message: "Invalid Token" });
     }
     req.userId = decoded.userId;
     next();
@@ -34,7 +32,6 @@ exports.checkAuthMiddleware = async (req, res, next) => {
     res.status(401).json({ success: false, message: "Authentication failed" });
   }
 };
-
 
 exports.checkAminAuthMiddleware = async (req, res, next) => {
   try {
@@ -54,19 +51,17 @@ exports.checkAminAuthMiddleware = async (req, res, next) => {
         .status(401)
         .json({ success: false, message: "Token has expired" });
     }
-
     const user = await Users.findById(decoded.userId);
-
     if (!user) {
-      return res
-        .status(401)
-        .json({ success: false, message: "Invalid Token" });
+      return res.status(401).json({ success: false, message: "Invalid Token" });
     }
 
-    if (user.role !== 'admin') {
-      return res
-        .status(403)
-        .json({ success: false, message: "You do not have the required admin privileges to access this resource" });
+    if (user.role !== "admin") {
+      return res.status(403).json({
+        success: false,
+        message:
+          "You do not have the required admin privileges to access this resource",
+      });
     }
 
     req.userId = decoded.userId;
@@ -76,8 +71,6 @@ exports.checkAminAuthMiddleware = async (req, res, next) => {
   }
 };
 
-
-
-exports.staticFileMiddleware = express.static(path.join(__dirname, '../public'));
-
-
+exports.staticFileMiddleware = express.static(
+  path.join(__dirname, "../public")
+);

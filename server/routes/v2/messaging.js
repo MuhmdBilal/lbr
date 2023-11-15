@@ -38,6 +38,8 @@ app.get("/chatDetail/:id", checkAminAuthMiddleware, async (req, res) => {
   try {
     const receiverId = req.params.id;
     const user = await User.findById(req?.userId);
+    const receiverUser = await User.findById(receiverId);
+
     const arraOfData = chatDetail.map((element) => ({
       chatroom_id: 1,
       id: 138,
@@ -47,11 +49,18 @@ app.get("/chatDetail/:id", checkAminAuthMiddleware, async (req, res) => {
       updated_at: element?.updated_at,
       receiver: {
         receiver_id: element?.sender_id == user?._id ? receiverId : user?._id,
-        receiver_name: user?.name,
+        receiver_name:
+          element?.sender_id == user?._id ? receiverUser?.name : user?.name,
         receiver_image_url:
-          user?.image === ""
-            ? "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
-            : user?.image,
+          element?.sender_id == user?._id && receiverUser?.image != ""
+            ? receiverUser?.image
+            : element?.sender_id != user?._id && user?.image != ""
+            ? user?.image
+            : "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg",
+        //     : user?.name,
+        // // user?.image === ""
+        // //   ? "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
+        // //   : user?.image,
       },
     }));
     res.status(200).json({

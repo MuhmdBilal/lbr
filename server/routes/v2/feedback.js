@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
 const { checkAminAuthMiddleware } = require("../../middlewares");
-const FeedbackList = require("../../constants");
+const { FeedbackList } = require("../../constants");
 
 //get all feedback list
 app.get("/getFeedbackList", checkAminAuthMiddleware, async (req, res) => {
   try {
-    const arraOfData = FeedbackList.map((element) => ({
+    const arraOfData = FeedbackList?.map((element) => ({
       _id: element?._id,
       detail: {
         propertyLocation: element?.propertyLocation,

@@ -78,7 +78,7 @@ const chatDetail = [
     created_at: "2023-07-10T04:55:58.656-04:00",
     updated_at: "2023-07-10T04:55:58.656-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "81",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -91,7 +91,7 @@ const chatDetail = [
     created_at: "2023-07-10T04:56:26.858-04:00",
     updated_at: "2023-07-10T04:56:26.858-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "650aef758cfb672235dc9f69",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -104,7 +104,7 @@ const chatDetail = [
     created_at: "2023-07-10T04:57:58.656-04:00",
     updated_at: "2023-07-10T04:55:58.656-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "81",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -117,7 +117,7 @@ const chatDetail = [
     created_at: "2023-09-08T04:58:12.092-04:00",
     updated_at: "2023-09-08T04:58:12.092-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "650aef758cfb672235dc9f69",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -130,7 +130,7 @@ const chatDetail = [
     created_at: "2023-09-08T04:58:12.092-04:00",
     updated_at: "2023-09-08T04:58:12.092-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "650aef758cfb672235dc9f69",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -143,7 +143,7 @@ const chatDetail = [
     created_at: "2023-09-08T04:59:12.092-04:00",
     updated_at: "2023-09-08T04:59:12.092-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "81",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -156,7 +156,7 @@ const chatDetail = [
     created_at: "2023-09-08T04:59:12.092-04:00",
     updated_at: "2023-09-08T04:59:12.092-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "81",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -169,7 +169,7 @@ const chatDetail = [
     created_at: "2023-09-08T04:58:12.092-04:00",
     updated_at: "2023-09-08T04:58:12.092-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "650aef758cfb672235dc9f69",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -182,7 +182,7 @@ const chatDetail = [
     created_at: "2023-09-08T04:59:12.092-04:00",
     updated_at: "2023-09-08T04:59:12.092-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "81",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -195,7 +195,7 @@ const chatDetail = [
     created_at: "2023-09-08T04:59:12.092-04:00",
     updated_at: "2023-09-08T04:59:12.092-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "650aef758cfb672235dc9f69",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -208,7 +208,7 @@ const chatDetail = [
     created_at: "2023-09-08T04:59:12.092-04:00",
     updated_at: "2023-09-08T04:59:12.092-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "650aef758cfb672235dc9f69",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -221,7 +221,7 @@ const chatDetail = [
     created_at: "2023-09-08T04:59:12.092-04:00",
     updated_at: "2023-09-08T04:59:12.092-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "650aef758cfb672235dc9f69",
       receiver_name: "",
       receiver_image_url: "",
     },
@@ -234,7 +234,7 @@ const chatDetail = [
     created_at: "2023-09-08T04:59:12.092-04:00",
     updated_at: "2023-09-08T04:59:12.092-04:00",
     receiver: {
-      receiver_id: 81,
+      receiver_id: "81",
       receiver_name: "",
       receiver_image_url: "",
     },

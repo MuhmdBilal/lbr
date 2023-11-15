@@ -37,20 +37,16 @@ app.get("/chatUsers", checkAminAuthMiddleware, async (req, res) => {
 app.get("/chatDetail/:id", checkAminAuthMiddleware, async (req, res) => {
   try {
     const receiverId = req.params.id;
-    const user = await User.findById(receiverId);
-
+    const user = await User.findById(req?.userId);
     const arraOfData = chatDetail.map((element) => ({
       chatroom_id: 1,
       id: 138,
-      sender_id:
-        element?.sender_id === "650aef758cfb672235dc9f69"
-          ? element?.sender_id
-          : receiverId,
+      sender_id: element?.sender_id == user?._id ? user?._id : receiverId,
       message: element?.message,
       created_at: element?.created_at,
       updated_at: element?.updated_at,
       receiver: {
-        receiver_id: receiverId,
+        receiver_id: element?.sender_id == user?._id ? receiverId : user?._id,
         receiver_name: user?.name,
         receiver_image_url:
           user?.image === ""
